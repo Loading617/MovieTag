@@ -2,7 +2,7 @@
 //
 
 #include "framework.h"
-#include "VITagEditor.h"
+#include "MovieTag.h"
 
 #define MAX_LOADSTRING 100
 
