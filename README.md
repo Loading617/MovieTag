@@ -1,2 +1,2 @@
 # MovieTag
-A Video Tag Editor for Windows
+A Movie/TV/Video Tag Editor for Windows
