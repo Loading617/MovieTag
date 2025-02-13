@@ -1,11 +1,17 @@
-#include <taglib/fileref.h>
-#include <taglib/tag.h>
+#include <SFML/Graphics.hpp>
 
-void readMetadata(const std::string& filename) {
-    TagLib::FileRef file(filename.c_str());
-    if (!file.isNull() && file.tag()) {
-        TagLib::Tag *tag = file.tag();
-        std::cout << "Title: " << tag->title().toCString(true) << std::endl;
-        std::cout << "Artist: " << tag->artist().toCString(true) << std::endl;
+int main() {
+    sf::RenderWindow window(sf::VideoMode(800, 600), "MovieTag");
+
+    while (window.isOpen()) {
+        sf::Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+
+        window.clear();
+        window.display();
     }
+    return 0;
 }
