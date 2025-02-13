@@ -1,39 +1,11 @@
-#include <SFML/Graphics.hpp>
-#include <iostream>
 #include <taglib/fileref.h>
 #include <taglib/tag.h>
-int main()
-{
-    // Create the main window
-    sf::RenderWindow app(sf::VideoMode(800, 600), "MovieTag");
 
-    // Load a sprite to display
-    sf::Texture texture;
-    if (!texture.loadFromFile("cb.bmp"))
-        return EXIT_FAILURE;
-    sf::Sprite sprite(texture);
-
-	// Start the game loop
-    while (app.isOpen())
-    {
-        // Process events
-        sf::Event event;
-        while (app.pollEvent(event))
-        {
-            // Close window : exit
-            if (event.type == sf::Event::Closed)
-                app.close();
-        }
-
-        // Clear screen
-        app.clear();
-
-        // Draw the sprite
-        app.draw(sprite);
-
-        // Update the window
-        app.display();
+void readMetadata(const std::string& filename) {
+    TagLib::FileRef file(filename.c_str());
+    if (!file.isNull() && file.tag()) {
+        TagLib::Tag *tag = file.tag();
+        std::cout << "Title: " << tag->title().toCString(true) << std::endl;
+        std::cout << "Artist: " << tag->artist().toCString(true) << std::endl;
     }
-
-    return EXIT_SUCCESS;
 }
